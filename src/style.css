@@ -1,0 +1,81 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color: #0f0f0f;
+  background-color: transparent;
+  background-color: lightgray;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "LED Bold";
+  font-weight: bold;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #f6f6f6;
+    background-color: #2f2f2f;
+  }
+
+  a:hover {
+    color: #24c8db;
+  }
+
+  input,
+  button {
+    color: #ffffff;
+    background-color: #0f0f0f98;
+  }
+}
+
+@font-face {
+  font-family: 'Cunia';
+  src: url(./assets/fonts/Cunia.otf);
+}
+@font-face {
+  font-family: 'Normal';
+  src: url(./assets/fonts/MontserratAlternates-Bold.otf);
+}
+@font-face {
+  font-family: 'Normal Thin';
+  src: url(./assets/fonts/Montserrat-Thin.otf);
+}
+@font-face {
+  font-family: 'Light';
+  src: url(./assets/fonts/Light.otf);
+}
+@font-face {
+  font-family: 'Pixel';
+  src: url(./assets/fonts/Pixel.ttf);
+}
+@font-face {
+  font-family: 'Dotted';
+  src: url(./assets/fonts/DottedSongtiCircleRegular.otf);
+}
+@font-face {
+  font-family: 'LED';
+  src: url(./assets/fonts/LED.ttf);
+}
+@font-face {
+  font-family: 'LED Bold';
+  src: url(./assets/fonts/LED-B.ttf);
+}
+@font-face {
+  font-family: 'Faster One';
+  src: url(./assets/fonts/FasterOne.ttf);
+}
+@font-face {
+  font-family: 'Jellee';
+  src: url(./assets/fonts/Jellee.ttf);
+}
