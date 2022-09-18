@@ -6,7 +6,7 @@
 
   color: #0f0f0f;
   background-color: transparent;
-  background-color: lightgray;
+  /*background-color: lightgray;*/
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,11 +15,10 @@
   -webkit-text-size-adjust: 100%;
 }
 
-body {
+header, body {
   padding: 0;
   margin: 0;
-  font-family: "LED Bold";
-  font-weight: bold;
+  overflow: hidden;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -58,10 +57,6 @@ body {
 @font-face {
   font-family: 'Pixel';
   src: url(./assets/fonts/Pixel.ttf);
-}
-@font-face {
-  font-family: 'Dotted';
-  src: url(./assets/fonts/DottedSongtiCircleRegular.otf);
 }
 @font-face {
   font-family: 'LED';

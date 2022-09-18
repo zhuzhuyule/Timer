@@ -14,7 +14,6 @@ export  const useTick = (options?: IOptions) => {
         tickInstanceRef.current = Tick.DOM.create(tickRef.current, {
             value
         });
-        console.log(tickRef.current)
         return () => {
             if (tickRef.current)  Tick.DOM.destroy(tickRef.current);
         }

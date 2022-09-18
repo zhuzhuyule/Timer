@@ -19,6 +19,7 @@
 
 
 .mask {
+    transition: all .9s;
     background: transparent;
     position: absolute;
     left: 0;
@@ -26,6 +27,11 @@
     top: 0;
     bottom: 0;
     z-index: 10;
+    border-radius: 5px;
+}
+
+.mask:hover {
+    background: #9ca3af22;
 }
 
 #text-style-overflow [data-view="swap"] {
@@ -34,8 +40,17 @@
 
 .tick {
     font-size: 2rem;
-    overflow: hidden;
+    overflow: visible;
     display: inline;
+    font-family: "LED Bold";
+    font-weight: bold;
+
+}
+
+.tick .word {
+    display: inline-block;
+    text-align: center;
+    font-size: 100%;
 }
 
 /*.tick .tick-flip[data-view] {*/

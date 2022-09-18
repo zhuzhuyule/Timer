@@ -1,42 +1,59 @@
-import React, {useEffect} from "react";
-import Tick from "@pqina/flip";
-import "@pqina/flip/dist/flip.min.css";
-import {useTick} from "../hooks/useTick";
+import '@pqina/flip/dist/flip.min.css';
+
+import dayjs from 'dayjs';
+import React, { useEffect, useRef, useState } from 'react';
+
+import { SelfAdaptFontSize } from '../util/fontsize';
 
 interface ITextClock {
-    showSecond?: boolean;
+  showSecond?: boolean;
 }
 
 export const TextClock: React.FC<ITextClock> = ({ showSecond = true }) => {
-    const {tickRef, updateValue} = useTick()
+  const [content, setContent] = useState('');
 
-    useEffect(() => {
-        Tick.helper.interval(() => {
-            const date = Tick.helper.date();
-            updateValue({
-                sep: ':',
-                hours: date.getHours(),
-                minutes: date.getMinutes(),
-                seconds: date.getSeconds()
-            });
-        })
-    }, [])
+  const elRef = useRef<HTMLDivElement | null>(null);
+  const fitRef = useRef(SelfAdaptFontSize.getInstance());
 
-    return (
-        <div ref={tickRef} className="tick">
-            <div data-layout="horizontal fit" className="offset">
-                <span data-view="text" data-key="hours" data-transform="pad(00)"></span>
-                <span data-view="text" data-key="sep" className="tick-text-inline"></span>
-                <span data-view="text" data-key="minutes" data-transform="pad(00)"></span>
-                {showSecond && (
-                    <>
-                        <span data-view="text" data-key="sep" className="tick-text-inline"></span>
-                        <span data-view="text" data-key="seconds" data-transform="pad(00)"></span>
-                    </>
-                )}
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const newDate = dayjs().format('hh:mm:ss');
+      if (content !== newDate) {
+        setContent(newDate);
+      }
+    }, 500);
+    return () => clearInterval(timer);
+  }, []);
 
-            </div>
-        </div>
-    );
-}
+  useEffect(() => {
+    if (elRef.current) {
+      fitRef.current.fontSize(
+        elRef.current,
+        elRef.current.clientWidth,
+        elRef.current.parentElement?.clientHeight
+      );
+    }
+  }, [
+    elRef.current,
+    elRef.current?.clientWidth,
+    elRef.current?.parentElement?.clientHeight,
+  ]);
 
+  return (
+    <div ref={elRef} className="tick">
+      {content.split('').map((word, i) => {
+        return (
+          <span
+            key={`${i}${word}`}
+            className="word"
+            style={{
+              width: `${100 / content.length}%`,
+            }}
+          >
+            {word}
+          </span>
+        );
+      })}
+    </div>
+  );
+};

@@ -52,6 +52,10 @@
     "updater": {
       "active": false
     },
+    "systemTray": {
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": true
+    },
     "macOSPrivateApi": true,
     "windows": [
       {
@@ -59,7 +63,7 @@
         "transparent": true,
         "alwaysOnTop": true,
         "decorations": false,
-        "resizable": false,
+        "resizable": true,
         "title": "timer",
         "height": 90,
         "width": 180
