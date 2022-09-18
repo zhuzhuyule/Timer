@@ -1,11 +1,3 @@
-.logo.vite:hover {
-    filter: drop-shadow(0 0 2em #747bff);
-}
-
-.logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafb);
-}
-
 .clock-container {
     height: 100vh;
     position: relative;
@@ -79,6 +71,10 @@
     align-items: center;
 }
 
+.time-tags {
+    display: flex;
+    flex-wrap: wrap;
+}
 .time-tag {
     user-select: none;
     border-radius: 5px;

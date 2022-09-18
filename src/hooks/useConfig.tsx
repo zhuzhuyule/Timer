@@ -1,11 +1,16 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { merge } from 'lodash-es';
+import dayjs from 'dayjs';
 
 interface IConfig {
+  millionSecond: number;
+  endTime: number;
+  timeTags: number[];
   isTop?: boolean;
   isSetting?: boolean;
   isFlip?: boolean;
   isSplit?: boolean;
+  isTimeDown?: boolean;
   showSecond?: boolean;
   size?: {
     height?: number;
@@ -18,14 +23,19 @@ interface IConfig {
   updateConfig?: (config: Omit<IConfig, 'updateConfig'>) => void;
 }
 
-const ConfigContext = createContext<IConfig>({});
 
 let globalConfig: IConfig = {
+  millionSecond: 0,
+  endTime: new Date().getTime(),
+  timeTags: [3600000],
   isTop: true,
   isSetting: true,
   isSplit: true,
   showSecond: true,
 };
+
+const ConfigContext = createContext<IConfig>(globalConfig);
+
 export const ConfigProvider: React.FC<{ children: React.ReactNode }> = (
   props
 ) => {
@@ -43,7 +53,11 @@ export const useConfig = () => {
   return {
     ...config,
     updateConfig: (newConfig: Partial<IConfig>) => {
-      config.updateConfig?.(merge({}, config, newConfig));
+      if (newConfig.timeTags) {
+        config.updateConfig?.({...merge({}, config, newConfig), timeTags: newConfig.timeTags});
+      } else {
+        config.updateConfig?.(merge({}, config, newConfig));
+      }
     },
   };
 };

@@ -2,29 +2,31 @@ import React, {useEffect} from 'react';
 import Tick from '@pqina/flip';
 import '@pqina/flip/dist/flip.min.css';
 import {useTick} from '../hooks/useTick';
+import dayjs from 'dayjs';
+import {useConfig} from '../hooks/useConfig';
 
-interface IFlipClock {
-  isSplit?: boolean;
-  showSecond?: boolean;
-}
 
-export const FlipClock: React.FC<IFlipClock> = ({
-                                                  isSplit,
-                                                  showSecond = true,
-                                                }) => {
+export const FlipTimeDown: React.FC = () => {
   const {tickRef, updateValue} = useTick();
+  const {endTime, showSecond, isSplit, isSetting} = useConfig();
 
   useEffect(() => {
-    Tick.helper.interval(() => {
-      const date = Tick.helper.date();
+    if (isSetting) return;
+    const timer = setInterval(() => {
+      const offset = endTime - Date.now();
+      const date = dayjs('2000').add(offset, 'millisecond');
+      if (offset > -1) {
+        console.log(offset,date.format('hh:mm:ss EN'));
+      }
       updateValue({
         sep: ':',
-        hours: date.getHours(),
-        minutes: date.getMinutes(),
-        seconds: date.getSeconds(),
+        hours: date.hour(),
+        minutes: date.minute(),
+        seconds: date.second(),
       });
-    });
-  }, []);
+    }, 500);
+    return () => clearInterval(timer);
+  }, [showSecond, endTime, isSetting]);
 
   const attributes = isSplit ? {'data-repeat': 'true'} : {};
 
