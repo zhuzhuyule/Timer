@@ -4,6 +4,7 @@ import { merge } from 'lodash-es';
 interface IConfig {
   isTop?: boolean;
   isSetting?: boolean;
+  isFlip?: boolean;
   isSplit?: boolean;
   showSecond?: boolean;
   size?: {

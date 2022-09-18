@@ -1,6 +1,7 @@
 import { UpOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu, Slider, Space, Switch } from 'antd';
 import CountDownTags from './CountDownTags';
+import {useConfig} from '../hooks/useConfig';
 
 const FRONTS = [
   'Cunia',
@@ -15,6 +16,7 @@ const FRONTS = [
 ];
 
 export const SettingContainer = () => {
+  const { isSplit, isFlip, showSecond, updateConfig } = useConfig();
   return (
     <div className="setting-container">
       <CountDownTags />
@@ -41,9 +43,12 @@ export const SettingContainer = () => {
         <span>秒:</span>
         <Slider className="slider" tooltip={{ open: false }} min={0} max={59} />
         <Switch
-          defaultChecked
+          checked={showSecond}
           checkedChildren="显示"
           unCheckedChildren="隐藏"
+          onChange={(showSecond) => {
+            updateConfig({ showSecond })
+          }}
         />
       </div>
       <Space>
@@ -75,15 +80,21 @@ export const SettingContainer = () => {
           unCheckedChildren="倒计时"
         />
         <Switch
-          defaultChecked
+          checked={isFlip}
           checkedChildren="翻牌"
           unCheckedChildren="文本"
+          onChange={(isFlip) => {
+            updateConfig({ isFlip})
+          }}
         />
-        <Switch
-          defaultChecked
+        {isFlip && <Switch
+          checked={isSplit}
           checkedChildren="单独"
           unCheckedChildren="合并"
-        />
+          onChange={(isSplit) => {
+            updateConfig({ isSplit})
+          }}
+        />}
       </Space>
     </div>
   );

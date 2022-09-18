@@ -4,9 +4,10 @@ import { useRef } from 'react';
 import '../App.css';
 import { useConfig } from '../hooks/useConfig';
 import { FlipClock } from './FlipClock';
+import {TextClock} from './TextClock';
 
 const ClockContainer = () => {
-  const { isTop, isSplit, isSetting, showSecond, updateConfig, size } =
+  const { isTop, isSplit, isSetting, showSecond, isFlip, updateConfig, size } =
     useConfig();
 
   const elRef = useRef<HTMLDivElement | null>(null);
@@ -14,16 +15,18 @@ const ClockContainer = () => {
   const handleContextMenu = debounce(async () => {
     const factor = await appWindow.scaleFactor();
     const size = (await appWindow.outerSize()).toLogical(factor);
-    updateConfig({ isSetting: !isSetting });
     if (isSetting) {
+      appWindow.setResizable(true)
       appWindow.setSize(
         new LogicalSize(size.width, elRef.current?.clientHeight || 200)
       );
     } else {
+      appWindow.setResizable(false)
       appWindow.setSize(
         new LogicalSize(size.width, (elRef.current?.clientHeight || 200) + 300)
       );
     }
+    updateConfig({ isSetting: !isSetting });
   }, 400);
 
   return (
@@ -33,12 +36,15 @@ const ClockContainer = () => {
       style={isSetting ? { height: `${elRef.current?.clientHeight}px` } : {}}
     >
       <div className="clock">
-        <FlipClock
-          isSplit={isSplit}
-          showSecond={showSecond}
-          key={`${isSplit} ${showSecond}`}
-        />
-        {/*<TextClock showSecond={showSecond} key={`${showSecond}`} />*/}
+        { isFlip ? (
+          <FlipClock
+            isSplit={isSplit}
+            showSecond={showSecond}
+            key={`${isSplit} ${showSecond}`}
+          />
+        ):(
+          <TextClock showSecond={showSecond} key={`${showSecond}`} />
+        ) }
       </div>
       <div
         data-tauri-drag-region

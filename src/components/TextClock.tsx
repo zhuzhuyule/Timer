@@ -17,13 +17,13 @@ export const TextClock: React.FC<ITextClock> = ({ showSecond = true }) => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const newDate = dayjs().format('hh:mm:ss');
+      const newDate = dayjs().format(showSecond ? 'hh:mm:ss' : 'hh:mm');
       if (content !== newDate) {
         setContent(newDate);
       }
     }, 500);
     return () => clearInterval(timer);
-  }, []);
+  }, [showSecond]);
 
   useEffect(() => {
     if (elRef.current) {
