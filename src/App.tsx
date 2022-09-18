@@ -1,18 +1,17 @@
-import React from "react";
-import "./App.css";
-import ClockContainer from "./components/ClockContainer";
-import {SettingContainer} from "./components/SettingContainer";
-import {appWindow} from "@tauri-apps/api/window";
-
+import './App.css';
+import ClockContainer from './components/ClockContainer';
+import { SettingContainer } from './components/SettingContainer';
+import { useConfig } from './hooks/useConfig';
 
 const App = () => {
-    // appWindow.setDecorations(true)
-    return (
-        <div>
-            <ClockContainer />
-            <SettingContainer />
-        </div>
-    );
-}
+  const { isSetting } = useConfig();
+
+  return (
+    <div className={isSetting ? 'setting' : ''}>
+      <ClockContainer />
+      <SettingContainer />
+    </div>
+  );
+};
 
 export default App;

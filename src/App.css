@@ -6,17 +6,24 @@
     filter: drop-shadow(0 0 2em #61dafb);
 }
 
-.container {
+.clock-container {
+    height: 100vh;
+    position: relative;
+}
+.setting .clock-container {
+    height: attr(data-hight px, 0);
+}
+
+.clock {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     padding: 15px;
     box-sizing: border-box;
     text-align: justify;
     text-align-last: justify;
 }
-
 
 .mask {
     transition: all .9s;
@@ -53,9 +60,36 @@
     font-size: 100%;
 }
 
-/*.tick .tick-flip[data-view] {*/
-/*    max-width: 1.125rem;*/
-/*}*/
+.setting {
+    display: flex;
+    flex-direction: column;
+}
+
+.setting .setting-container {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    overflow-y: visible;
+    flex: 1;
+}
+
+.one-line {
+    display: flex;
+    align-items: center;
+}
+
+.time-tag {
+    user-select: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.slider {
+    flex: 1;
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
 .second {
     display: flex;
