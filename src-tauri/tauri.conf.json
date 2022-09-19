@@ -15,7 +15,7 @@
     },
     "bundle": {
       "active": true,
-      "category": "DeveloperTool",
+      "category": "Lifestyle",
       "copyright": "",
       "deb": {
         "depends": []
@@ -28,7 +28,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "com.zhuzhuyule.timer",
       "longDescription": "",
       "macOS": {
         "entitlements": null,

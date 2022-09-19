@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { merge } from 'lodash-es';
-import dayjs from 'dayjs';
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { merge } from "lodash-es";
+import dayjs from "dayjs";
 
 interface IConfig {
   millionSecond: number;
@@ -20,9 +20,8 @@ interface IConfig {
     left?: number;
     top?: number;
   };
-  updateConfig?: (config: Omit<IConfig, 'updateConfig'>) => void;
+  updateConfig?: (config: Omit<IConfig, "updateConfig">) => void;
 }
-
 
 let globalConfig: IConfig = {
   millionSecond: 0,
@@ -54,7 +53,10 @@ export const useConfig = () => {
     ...config,
     updateConfig: (newConfig: Partial<IConfig>) => {
       if (newConfig.timeTags) {
-        config.updateConfig?.({...merge({}, config, newConfig), timeTags: newConfig.timeTags});
+        config.updateConfig?.({
+          ...merge({}, config, newConfig),
+          timeTags: newConfig.timeTags,
+        });
       } else {
         config.updateConfig?.(merge({}, config, newConfig));
       }

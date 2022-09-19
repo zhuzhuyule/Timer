@@ -742,6 +742,11 @@
     "picocolors" "^1.0.0"
     "source-map-js" "^1.0.2"
 
+"prettier@^2.7.1":
+  "integrity" "sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g=="
+  "resolved" "https://registry.npmjs.org/prettier/-/prettier-2.7.1.tgz"
+  "version" "2.7.1"
+
 "rc-align@^4.0.0":
   "integrity" "sha512-3DuwSJp8iC/dgHzwreOQl52soj40LchlfUHtgACOUtwGuoFIOVh6n/sCpfqCU8kO5+iz6qR0YKvjgB8iPdE3aQ=="
   "resolved" "https://registry.npmjs.org/rc-align/-/rc-align-4.0.12.tgz"

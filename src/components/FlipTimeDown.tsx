@@ -1,25 +1,24 @@
-import React, {useEffect} from 'react';
-import Tick from '@pqina/flip';
-import '@pqina/flip/dist/flip.min.css';
-import {useTick} from '../hooks/useTick';
-import dayjs from 'dayjs';
-import {useConfig} from '../hooks/useConfig';
-
+import React, { useEffect } from "react";
+import Tick from "@pqina/flip";
+import "@pqina/flip/dist/flip.min.css";
+import { useTick } from "../hooks/useTick";
+import dayjs from "dayjs";
+import { useConfig } from "../hooks/useConfig";
 
 export const FlipTimeDown: React.FC = () => {
-  const {tickRef, updateValue} = useTick();
-  const {endTime, showSecond, isSplit, isSetting} = useConfig();
+  const { tickRef, updateValue } = useTick();
+  const { endTime, showSecond, isSplit, isSetting } = useConfig();
 
   useEffect(() => {
     if (isSetting) return;
     const timer = setInterval(() => {
       const offset = endTime - Date.now();
-      const date = dayjs('2000').add(offset, 'millisecond');
+      const date = dayjs("2000").add(offset, "millisecond");
       if (offset > -1) {
-        console.log(offset,date.format('hh:mm:ss EN'));
+        console.log(offset, date.format("hh:mm:ss EN"));
       }
       updateValue({
-        sep: ':',
+        sep: ":",
         hours: date.hour(),
         minutes: date.minute(),
         seconds: date.second(),
@@ -28,7 +27,7 @@ export const FlipTimeDown: React.FC = () => {
     return () => clearInterval(timer);
   }, [showSecond, endTime, isSetting]);
 
-  const attributes = isSplit ? {'data-repeat': 'true'} : {};
+  const attributes = isSplit ? { "data-repeat": "true" } : {};
 
   return (
     <div ref={tickRef} className="tick">
@@ -36,16 +35,22 @@ export const FlipTimeDown: React.FC = () => {
         <div {...attributes} data-key="hours" data-transform="pad(00)">
           <span data-view="flip"></span>
         </div>
-        <span data-view="text" data-key="sep"
-              className="tick-text-inline"></span>
+        <span
+          data-view="text"
+          data-key="sep"
+          className="tick-text-inline"
+        ></span>
         <div {...attributes} data-key="minutes" data-transform="pad(00)">
           <span data-view="flip"></span>
         </div>
         {showSecond && (
           <>
-            <span data-view="text" data-key="sep"
-                  className="tick-text-inline"></span>
-            <div  {...attributes} data-key="seconds" data-transform="pad(00)">
+            <span
+              data-view="text"
+              data-key="sep"
+              className="tick-text-inline"
+            ></span>
+            <div {...attributes} data-key="seconds" data-transform="pad(00)">
               <span data-view="flip"></span>
             </div>
           </>
@@ -54,4 +59,3 @@ export const FlipTimeDown: React.FC = () => {
     </div>
   );
 };
-

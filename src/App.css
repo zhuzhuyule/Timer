@@ -1,92 +1,91 @@
 .clock-container {
-    height: 100vh;
-    position: relative;
+  height: 100vh;
+  position: relative;
 }
 .setting .clock-container {
-    height: attr(data-hight px, 0);
+  height: attr(data-hight px, 0);
 }
 
 .clock {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    height: 100%;
-    padding: 15px;
-    box-sizing: border-box;
-    text-align: justify;
-    text-align-last: justify;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  text-align: justify;
+  text-align-last: justify;
 }
 
 .mask {
-    transition: all .9s;
-    background: transparent;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 10;
-    border-radius: 5px;
+  transition: all 0.9s;
+  background: transparent;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  border-radius: 5px;
 }
 
 .mask:hover {
-    background: #9ca3af22;
+  background: #9ca3af22;
 }
 
 #text-style-overflow [data-view="swap"] {
-    overflow-y: hidden;
+  overflow-y: hidden;
 }
 
 .tick {
-    font-size: 2rem;
-    overflow: visible;
-    display: inline;
-    font-family: "LED Bold";
-    font-weight: bold;
-
+  font-size: 2rem;
+  overflow: visible;
+  display: inline;
+  font-family: "LED Bold";
+  font-weight: bold;
 }
 
 .tick .word {
-    display: inline-block;
-    text-align: center;
-    font-size: 100%;
+  display: inline-block;
+  text-align: center;
+  font-size: 100%;
 }
 
 .setting {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .setting .setting-container {
-    background: white;
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 10px;
-    overflow-y: visible;
-    flex: 1;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  overflow-y: visible;
+  flex: 1;
 }
 
 .one-line {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .time-tags {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 .time-tag {
-    user-select: none;
-    border-radius: 5px;
-    cursor: pointer;
+  user-select: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .slider {
-    flex: 1;
-    margin-left: 10px;
-    margin-right: 10px;
+  flex: 1;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .second {
-    display: flex;
+  display: flex;
 }
