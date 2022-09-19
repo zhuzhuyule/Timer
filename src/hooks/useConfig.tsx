@@ -1,32 +1,13 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { merge } from "lodash-es";
+import { isEqual, merge } from "lodash-es";
 import dayjs from "dayjs";
-
-interface IConfig {
-  millionSecond: number;
-  endTime: number;
-  timeTags: number[];
-  isTop?: boolean;
-  isSetting?: boolean;
-  isFlip?: boolean;
-  isSplit?: boolean;
-  isTimeDown?: boolean;
-  showSecond?: boolean;
-  size?: {
-    height?: number;
-    width?: number;
-  };
-  position?: {
-    left?: number;
-    top?: number;
-  };
-  updateConfig?: (config: Omit<IConfig, "updateConfig">) => void;
-}
+import { IConfig } from "../types";
+import store from "../util/store";
 
 let globalConfig: IConfig = {
   millionSecond: 0,
   endTime: new Date().getTime(),
-  timeTags: [3600000],
+  timeTags: [5 * 60 * 1000],
   isTop: true,
   isSetting: true,
   isSplit: true,
@@ -39,6 +20,16 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = (
   props
 ) => {
   const [config, setConfig] = useState<IConfig>(globalConfig);
+
+  useEffect(() => {
+    store.readConfig().then((config) => config && setConfig(config));
+  }, []);
+
+  useEffect(() => {
+    if (config) {
+      store.updateConfig(config);
+    }
+  }, [config]);
 
   return (
     <ConfigContext.Provider value={{ ...config, updateConfig: setConfig }}>
