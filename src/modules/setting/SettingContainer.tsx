@@ -1,9 +1,9 @@
 import { UpOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Menu, Slider, Space, Switch } from "antd";
-import TimeTags from "./TimeTags";
-import { useConfig } from "../hooks/useConfig";
 import { useState } from "react";
 import dayjs from "dayjs";
+import { useConfig } from "../../hooks/useConfig";
+import TimeTags from "../../components/TimeTags";
 
 const FRONTS = [
   "Cunia",

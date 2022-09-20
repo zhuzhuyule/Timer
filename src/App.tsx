@@ -1,7 +1,7 @@
 import "./App.css";
-import ClockContainer from "./components/ClockContainer";
-import { SettingContainer } from "./components/SettingContainer";
 import { useConfig } from "./hooks/useConfig";
+import ClockContainer from "./modules/clock/ClockContainer";
+import { SettingContainer } from "./modules/setting/SettingContainer";
 
 const App = () => {
   const { isSetting } = useConfig();

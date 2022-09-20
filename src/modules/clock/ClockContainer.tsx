@@ -1,12 +1,11 @@
 import { appWindow, LogicalSize } from "@tauri-apps/api/window";
 import { debounce } from "lodash-es";
 import { useRef } from "react";
-import "../App.css";
-import { useConfig } from "../hooks/useConfig";
-import { FlipClock } from "./FlipClock";
-import { TextClock } from "./TextClock";
-import { FlipTimeDown } from "./FlipTimeDown";
 import dayjs from "dayjs";
+import { FlipTimeDown } from "../timer/FlipTimeDown";
+import { TextClock } from "../../components/TextClock";
+import { useConfig } from "../../hooks/useConfig";
+import { FlipTimer } from "../../components/FlipTimer";
 
 const ClockContainer = () => {
   const {
@@ -53,7 +52,7 @@ const ClockContainer = () => {
       {!isTimeDown && (
         <div className="clock">
           {isFlip ? (
-            <FlipClock
+            <FlipTimer
               isSplit={isSplit}
               showSecond={showSecond}
               key={`${isSplit} ${showSecond}`}

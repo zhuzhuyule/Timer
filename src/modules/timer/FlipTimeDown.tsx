@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import Tick from "@pqina/flip";
 import "@pqina/flip/dist/flip.min.css";
-import { useTick } from "../hooks/useTick";
 import dayjs from "dayjs";
-import { useConfig } from "../hooks/useConfig";
+import { useTick } from "../../hooks/useTick";
+import { useConfig } from "../../hooks/useConfig";
 
 export const FlipTimeDown: React.FC = () => {
   const { tickRef, updateValue } = useTick();

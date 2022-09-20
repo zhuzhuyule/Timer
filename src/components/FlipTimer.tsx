@@ -2,29 +2,16 @@ import React, { useEffect } from "react";
 import Tick from "@pqina/flip";
 import "@pqina/flip/dist/flip.min.css";
 import { useTick } from "../hooks/useTick";
+import { useConfig } from "../hooks/useConfig";
 
 interface IFlipClock {
   isSplit?: boolean;
   showSecond?: boolean;
 }
 
-export const FlipClock: React.FC<IFlipClock> = ({
-  isSplit,
-  showSecond = true,
-}) => {
+export const FlipTimer: React.FC<IFlipClock> = () => {
   const { tickRef, updateValue } = useTick();
-
-  useEffect(() => {
-    Tick.helper.interval(() => {
-      const date = Tick.helper.date();
-      updateValue({
-        sep: ":",
-        hours: date.getHours(),
-        minutes: date.getMinutes(),
-        seconds: date.getSeconds(),
-      });
-    });
-  }, []);
+  const { showSecond, isSplit } = useConfig();
 
   const attributes = isSplit ? { "data-repeat": "true" } : {};
 
