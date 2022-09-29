@@ -16,5 +16,5 @@ export interface IConfig {
     left?: number;
     top?: number;
   };
-  updateConfig?: (config: Omit<IConfig, "updateConfig">) => void;
+  updateConfig: (config: Partial<Omit<IConfig, "updateConfig">>) => void;
 }
